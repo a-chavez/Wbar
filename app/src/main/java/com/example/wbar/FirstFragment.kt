@@ -3,6 +3,7 @@ package com.example.wbar
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
@@ -24,9 +25,8 @@ class FirstFragment : Fragment(), Adapter.PassObj {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true) //activar menu item
         viewModel = ViewModelProvider(this).get(ZViewModel::class.java)
-        //dummyData()
-
     }
 
     override fun onCreateView(
@@ -58,8 +58,19 @@ class FirstFragment : Fragment(), Adapter.PassObj {
         findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment,b)
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+        if (id == R.id.action_settings) {
+
+            findNavController().navigate(R.id.action_FirstFragment_to_masterProduct)
+
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     fun dummyData()  {
-        val mObjApp = ObjApp(product = "Piscola Normal",unit = "Vaso",price = 3000,pub = "Pub Sushi tumaire",img = "https://www.diariodecultura.com.ar/wp-content/uploads/2019/05/toptragos.jpg")
+        val mObjApp = ObjApp(product = "Piscola Normal",unit = "Vaso",price = 3000,pub = "Pub Sushi tumaire",img ="https://www.cocina-chilena.com/base/stock/Recipe/320-image/320-image_web.jpg")
         viewModel.insertObj(mObjApp)
     }
 

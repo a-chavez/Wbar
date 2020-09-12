@@ -1,22 +1,22 @@
 <resources>
     <string name="app_name">Wbar</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Maestro Productos</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+    <string name="principal">Volver a inicio</string>
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
     <string name="id">ID</string>
-    <string name="item">Producto ejemplo</string>
+    <string name="item">Producto</string>
     <string name="unit">Unidad</string>
-    <string name="price">00.000</string>
+    <string name="price">00000</string>
     <string name="pub">Nombre Pub/Shopperia</string>
-
-
+    <string name="url">http:// ...</string>
 
 
 </resources>
