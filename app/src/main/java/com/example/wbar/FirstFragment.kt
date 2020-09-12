@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -60,18 +59,13 @@ class FirstFragment : Fragment(), Adapter.PassObj {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
-        if (id == R.id.action_settings) {
+        if (id == R.id.menuMaster) {
 
             findNavController().navigate(R.id.action_FirstFragment_to_masterProduct)
 
             return true
         }
         return super.onOptionsItemSelected(item)
-    }
-
-    fun dummyData()  {
-        val mObjApp = ObjApp(product = "Piscola Normal",unit = "Vaso",price = 3000,pub = "Pub Sushi tumaire",img ="https://www.cocina-chilena.com/base/stock/Recipe/320-image/320-image_web.jpg")
-        viewModel.insertObj(mObjApp)
     }
 
 }
