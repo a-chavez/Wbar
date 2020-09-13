@@ -22,10 +22,13 @@ class FirstFragment : Fragment(), Adapter.PassObj {
 
     lateinit var viewModel: ZViewModel
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true) //activar menu item
         viewModel = ViewModelProvider(this).get(ZViewModel::class.java)
+
+
     }
 
     override fun onCreateView(

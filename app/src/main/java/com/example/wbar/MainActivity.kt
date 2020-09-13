@@ -8,12 +8,22 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 
+val mlist : MutableList<String> = mutableListOf()
+
+fun addList (mCardItem:String)  {
+    mlist.add(mCardItem)
+
+}
 class MainActivity : AppCompatActivity() {
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
+
+
 
     }
 
@@ -22,6 +32,7 @@ class MainActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
     }
+
 
 
 }
