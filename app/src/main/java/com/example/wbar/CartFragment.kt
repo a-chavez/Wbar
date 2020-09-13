@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -23,6 +22,11 @@ class SecondFragment : Fragment() {
     var bID : Int? =null
     var ctd = 1
     var tot = 0
+    var product = ""
+    var unit = ""
+    var price = 0
+    var url = ""
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,13 +54,18 @@ class SecondFragment : Fragment() {
         bID?.let{
             mViewModel.getOneObjByID(it).observe(viewLifecycleOwner, Observer {
                 tot = it.price*ctd
+                product = it.product
+                unit = it.unit
+                price = it.price
+                url = it.img
+
                 tvPubName.setText(it.pub)
-                tvItem.setText(it.product)
-                tvUnit.setText(it.unit)
-                tvPrice.setText(it.price.toString())
+                tvItem.setText(product)
+                tvUnit.setText(unit)
+                tvPrice.setText(price.toString())
                 tvCtd.setText(ctd.toString())
                 tvTotal.setText(tot.toString())
-                Glide.with(this).load(it.img).into(imgItem)
+                Glide.with(this).load(url).into(imgItem)
 
             })
         }
@@ -75,6 +84,14 @@ class SecondFragment : Fragment() {
                 tvCtd.setText(ctd.toString())
             }
         }
+
+        btAddtoCard.setOnClickListener {
+            val mCardItem = CardItem(url,product,unit,ctd,price,tot)
+            val listamCardItem = listOf(mCardItem)
+
+
+        }
+
 
         btHome.setOnClickListener {
             findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
