@@ -1,14 +1,13 @@
 package com.example.wbar
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -16,9 +15,6 @@ import com.bumptech.glide.Glide
 import com.example.wbar.model.ZViewModel
 import kotlinx.android.synthetic.main.fragment_cart.*
 
-/**
- * A simple [Fragment] subclass as the second destination in the navigation.
- */
 class SecondFragment : Fragment() {
 
     lateinit var mViewModel: ZViewModel
@@ -30,22 +26,18 @@ class SecondFragment : Fragment() {
     var price = 0
     var url = ""
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         mViewModel = ViewModelProvider(this).get(ZViewModel::class.java)
         arguments?.let {
             bID = it.getInt("ID")
-            Log.d("Atencion",bID.toString())
         }
-
     }
 
-
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_cart, container, false)
@@ -56,7 +48,7 @@ class SecondFragment : Fragment() {
 
         bID?.let{
             mViewModel.getOneObjByID(it).observe(viewLifecycleOwner, Observer {
-                tot = it.price*ctd
+                tot = it.price * ctd
                 product = it.product
                 unit = it.unit
                 price = it.price
@@ -69,14 +61,15 @@ class SecondFragment : Fragment() {
                 tvCtd.setText(ctd.toString())
                 tvTotal.setText(tot.toString())
                 Glide.with(this).load(url).into(imgItem)
-                cardList.adapter = ArrayAdapter(requireContext(),R.layout.mylist, mlist)
+                cardList.adapter = ArrayAdapter(requireContext(), R.layout.mylist, mlist)
+                ticket()
 
             })
         }
 
         btUp.setOnClickListener {
             ctd++
-            tvTotal.setText((tot*ctd).toString())
+            tvTotal.setText((tot * ctd).toString())
             tvCtd.setText(ctd.toString())
 
         }
@@ -90,14 +83,23 @@ class SecondFragment : Fragment() {
         }
 
         btAddtoCard.setOnClickListener() {
-           val mCardItem: String = "$product $unit: $ctd x $$price = $${tot*ctd}"
-           addList(mCardItem)
-           cardList.adapter = ArrayAdapter(requireContext(),R.layout.mylist, mlist)
-                cardList.setOnItemClickListener { parent, view, position, id ->
+           ticket+=(ctd*price)
+
+            val mCardItem: String = "$product $unit: $ctd x $$price = $${tot*ctd}"
+            addList(mCardItem)
+            cardList.adapter = ArrayAdapter(requireContext(), R.layout.mylist, mlist)
+            ticket()
+
+            cardList.setOnItemClickListener { parent, view, position, id ->
+
                     Toast.makeText(requireContext(),"Borrar ${mlist[position]}",Toast.LENGTH_SHORT).show()
+                    val parts = mlist[position].split("=".toRegex()).map { it.trim() }
+                    val minus:Int = parts[1].substring(1).toInt()
+                    ticket-=minus
                     mlist.removeAt(position)
-                    cardList.adapter = ArrayAdapter(requireContext(),R.layout.mylist, mlist)
-                }
+                    cardList.adapter = ArrayAdapter(requireContext(), R.layout.mylist, mlist)
+                    ticket()
+            }
 
         }
 
@@ -107,6 +109,6 @@ class SecondFragment : Fragment() {
         }
     }
 
-
+ fun ticket()=tvTicket.setText("Total $${ticket.toString()}")
 
 }

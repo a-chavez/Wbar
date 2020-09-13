@@ -15,6 +15,7 @@
     <string name="principal">Volver a inicio</string>
     <string name="grabar">Grabar</string>
 
+
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
@@ -24,5 +25,7 @@
     <string name="price">00000</string>
     <string name="pub">Nombre Pub/Shopperia</string>
     <string name="url">http:// ...</string>
+
+    <string name="ticket">Total $ %1$s</string>
 
 </resources>

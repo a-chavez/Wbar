@@ -99,6 +99,7 @@
             android:layout_marginTop="24dp"
             android:background="@drawable/button_rounded"
             android:text="@string/grabar"
+            android:textColor="@color/UltraLigthYellow"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgMaster" />
 
@@ -110,6 +111,7 @@
             android:layout_marginEnd="16dp"
             android:background="@drawable/button__rouded_border"
             android:text="@string/principal"
+            android:textColor="@color/colorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgMaster" />
 </androidx.constraintlayout.widget.ConstraintLayout>

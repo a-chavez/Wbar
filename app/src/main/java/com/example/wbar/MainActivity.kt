@@ -9,6 +9,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 
 val mlist : MutableList<String> = mutableListOf()
+var ticket:Int =0
 
 fun addList (mCardItem:String)  {
     mlist.add(mCardItem)

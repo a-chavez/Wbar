@@ -15,20 +15,14 @@ import com.example.wbar.model.ObjApp
 import com.example.wbar.model.ZViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
 
-/**
- * A simple [Fragment] subclass as the default destination in the navigation.
- */
 class FirstFragment : Fragment(), Adapter.PassObj {
 
     lateinit var viewModel: ZViewModel
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true) //activar menu item
         viewModel = ViewModelProvider(this).get(ZViewModel::class.java)
-
-
     }
 
     override fun onCreateView(
@@ -44,19 +38,18 @@ class FirstFragment : Fragment(), Adapter.PassObj {
 
         val mRecyclerView = recyclerView
         val mAdapter = Adapter(this)
+        tvTicketMain.text = ("Total $${ticket.toString()}")
         mRecyclerView.adapter = mAdapter
         mRecyclerView.layoutManager = LinearLayoutManager(context)
 
         viewModel.mAllObj.observe(viewLifecycleOwner, Observer {
             mAdapter.updateList(it)
         })
-
     }
 
     override fun passData(mObjApp: ObjApp) {
         val b = Bundle()
         b.putInt("ID",mObjApp.id)
-        Toast.makeText(context,mObjApp.id.toString(), Toast.LENGTH_SHORT).show()
         findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment,b)
     }
 

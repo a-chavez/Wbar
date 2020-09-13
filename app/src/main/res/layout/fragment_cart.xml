@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/UltraLigthYellow"
     android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -81,7 +82,10 @@
             android:layout_height="40dp"
             android:layout_marginStart="190dp"
             android:layout_marginTop="8dp"
+            android:background="@drawable/button_rounded"
             android:text="+"
+            android:textColor="@color/UltraLigthYellow"
+            android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/imgItem"
             app:layout_constraintTop_toTopOf="@+id/imgItem" />
 
@@ -91,16 +95,21 @@
             android:layout_height="40dp"
             android:layout_marginStart="190dp"
             android:layout_marginBottom="8dp"
+            android:background="@drawable/button_rounded"
             android:text="-"
+            android:textColor="@color/UltraLigthYellow"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/imgItem"
             app:layout_constraintStart_toEndOf="@+id/imgItem" />
 
         <Button
             android:id="@+id/btAddtoCard"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_width="135dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:background="@drawable/button__rouded_border"
             android:text="Agregar"
+            android:textColor="@color/colorPrimary"
             app:layout_constraintEnd_toEndOf="@+id/imgBack"
             app:layout_constraintStart_toStartOf="@+id/imgBack"
             app:layout_constraintTop_toBottomOf="@+id/imgBack" />
@@ -120,21 +129,25 @@
 
         <Button
             android:id="@+id/btPay"
-            android:layout_width="wrap_content"
+            android:layout_width="135dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="88dp"
+            android:background="@drawable/button_rounded"
             android:text="Pagar"
+            android:textColor="@color/UltraLigthYellow"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardList" />
 
         <Button
             android:id="@+id/btHome"
-            android:layout_width="wrap_content"
+            android:layout_width="135dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginTop="88dp"
+            android:layout_marginEnd="28dp"
+            android:background="@drawable/button__rouded_border"
             android:text="@string/principal"
+            android:textColor="@color/colorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardList" />
 
@@ -184,6 +197,17 @@
             app:layout_constraintStart_toEndOf="@+id/imgItem"
             app:layout_constraintTop_toTopOf="@+id/imgItem"
             app:layout_constraintVertical_bias="0.809" />
+
+        <TextView
+            android:id="@+id/tvTicket"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/ticket"
+            android:textSize="36sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardList" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
