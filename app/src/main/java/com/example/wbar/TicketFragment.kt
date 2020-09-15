@@ -45,7 +45,5 @@ class TicketFragment : Fragment() {
         btInicioTicket.setOnClickListener {
             findNavController().navigate(R.id.action_ticketFragment_to_FirstFragment)
         }
-
     }
-
 }

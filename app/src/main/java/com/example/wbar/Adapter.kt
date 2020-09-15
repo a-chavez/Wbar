@@ -1,11 +1,14 @@
 package com.example.wbar
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.wbar.model.ObjApp
+import com.example.wbar.model.ZViewModel
 import kotlinx.android.synthetic.main.item_list.view.*
 
 class Adapter(var mPassObj: FirstFragment) : RecyclerView.Adapter<Adapter.TaskViewHolder>(){
@@ -38,10 +41,12 @@ class Adapter(var mPassObj: FirstFragment) : RecyclerView.Adapter<Adapter.TaskVi
             parent,
             false
         )
+
         return TaskViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
+
         val mObjApp : ObjApp = datalist[position]
         holder.idText.text = mObjApp.id.toString()
         holder.itemText.text = mObjApp.product
@@ -49,6 +54,7 @@ class Adapter(var mPassObj: FirstFragment) : RecyclerView.Adapter<Adapter.TaskVi
         holder.priceText.text = mObjApp.price.toString()
         holder.pubText.text = mObjApp.pub
         Glide.with(holder.itemView.context).load(mObjApp.img).into(holder.img)
+
     }
 
     override fun getItemCount() = datalist.size
@@ -56,4 +62,6 @@ class Adapter(var mPassObj: FirstFragment) : RecyclerView.Adapter<Adapter.TaskVi
     interface PassObj{
         fun passData(mObjApp: ObjApp)
     }
+
 }
+
