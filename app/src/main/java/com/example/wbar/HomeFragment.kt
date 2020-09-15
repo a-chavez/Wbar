@@ -60,7 +60,7 @@ class FirstFragment : Fragment(), Adapter.PassObj {
         }
 
         if (id == R.id.menuConsumo) {
-            findNavController().navigate(R.id.action_FirstFragment_to_cardItem)
+           findNavController().navigate(R.id.action_FirstFragment_to_ticketFragment)
             return true
         }
 

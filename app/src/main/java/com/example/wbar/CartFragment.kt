@@ -139,7 +139,10 @@ class SecondFragment : Fragment() {
                 .setAction("Action", null).show()
             mlist.clear()
             ticket=0
-            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+
+
+
+            // findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
 
             Log.d("AQUI", "Lista con datos")
         }else{
@@ -147,16 +150,6 @@ class SecondFragment : Fragment() {
             .setAction("Action", null).show()
         }
 
-/*
-           mViewModel.getlASTOneTicket().observe(viewLifecycleOwner, Observer {
-               if (it != null) {
-                   Log.d("AQUI", "no nulo")
-               } else {
-                   Log.d("AQUI", "nulo")
-               }
-           })
-
-*/
 
        }
         btHome.setOnClickListener {

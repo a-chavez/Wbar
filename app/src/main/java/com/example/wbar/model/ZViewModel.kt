@@ -4,7 +4,6 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.example.wbar.CardItem
 import kotlinx.coroutines.launch
 
 class ZViewModel(application: Application) : AndroidViewModel(application) {
@@ -45,7 +44,7 @@ class ZViewModel(application: Application) : AndroidViewModel(application) {
         return mRepository.getOneTicketbyID(id)
     }
 
-    fun getlASTOneTicket() : LiveData<TicketApp> {
+    fun getLastOneTicket() : LiveData<TicketApp> {
         return mRepository.getLastOneTicket()
     }
 

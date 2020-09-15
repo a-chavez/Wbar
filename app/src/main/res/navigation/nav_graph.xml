@@ -17,6 +17,9 @@
         <action
             android:id="@+id/action_FirstFragment_to_masterProduct"
             app:destination="@id/masterProduct" />
+        <action
+            android:id="@+id/action_FirstFragment_to_ticketFragment"
+            app:destination="@id/ticketFragment" />
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
@@ -34,6 +37,14 @@
         android:label="MasterProduct" >
         <action
             android:id="@+id/action_masterProduct_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ticketFragment"
+        android:name="com.example.wbar.TicketFragment"
+        android:label="TicketFragment" >
+        <action
+            android:id="@+id/action_ticketFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
     </fragment>
 </navigation>
