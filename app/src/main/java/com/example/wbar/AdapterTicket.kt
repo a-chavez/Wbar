@@ -24,7 +24,6 @@ class AdapterTicket : RecyclerView.Adapter<AdapterTicket.TaskViewHolder>(){
     }
 
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(
             R.layout.carditem,
@@ -38,7 +37,10 @@ class AdapterTicket : RecyclerView.Adapter<AdapterTicket.TaskViewHolder>(){
         val mTicketApp : TicketApp = datalist[position]
         holder.idTicketText.text = mTicketApp.id.toString()
         holder.itemTicketText.text = mTicketApp.txt
-        holder.totalTicketText.text = mTicketApp.total.toString()
+            .replace("["," ")
+            .replace("]","")
+            .replace(",","\n")
+        holder.totalTicketText.text = ("$ ${mTicketApp.total.toString()}")
 
     }
 

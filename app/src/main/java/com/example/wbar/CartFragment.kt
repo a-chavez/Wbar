@@ -77,7 +77,6 @@ class SecondFragment : Fragment() {
             ctd++
             tvTotal.setText((tot * ctd).toString())
             tvCtd.setText(ctd.toString())
-
         }
 
         btDown.setOnClickListener {
@@ -107,7 +106,8 @@ class SecondFragment : Fragment() {
 
                 // Cuando es Afirmativo
                 builder.setPositiveButton("CONFIRMAR"){dialog, which ->
-                    Toast.makeText(requireContext(),"Item eliminado",Toast.LENGTH_LONG).show()
+                    Snackbar.make(view, "Ticket eliminado", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show()
                     val parts = mlist[position].split("=".toRegex()).map { it.trim() }
                     val minus:Int = parts[1].substring(1).toInt()
                     ticket-=minus
@@ -128,30 +128,25 @@ class SecondFragment : Fragment() {
 
        btPay.setOnClickListener {
 
-        if (mlist.size >0) {
-            val ticketTxt = mlist.toString()  // TODO usar un "for" para ordenar en listado
-                    val mTicket = TicketApp(
+            if (mlist.size >0) {
+                val ticketTxt = mlist.toString()
+                val mTicket = TicketApp(
                     txt = ticketTxt,
                     total = ticket
                 )
-            mViewModel.insertTicket(mTicket)
-            Snackbar.make(view, "Ticket Generado!", Snackbar.LENGTH_LONG)
+                mViewModel.insertTicket(mTicket)
+                Snackbar.make(view, "Ticket Generado!", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show()
+                mlist.clear()
+                ticket=0
+                findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+
+            }else{
+                Snackbar.make(view, "Lista Vacia, nada que pagar!", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
-            mlist.clear()
-            ticket=0
-
-
-
-            // findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
-
-            Log.d("AQUI", "Lista con datos")
-        }else{
-            Snackbar.make(view, "Lista Vacia, nada que pagar!", Snackbar.LENGTH_LONG)
-            .setAction("Action", null).show()
-        }
-
-
+            }
        }
+
         btHome.setOnClickListener {
             findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
         }
