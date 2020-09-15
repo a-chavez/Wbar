@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData
 class ZRepo (private val mObjDAO: ObjDAO, private val mTicketDAO: TicketDAO){
 
     val mListAllObjApp      : LiveData<List<ObjApp>> = mObjDAO.getAllObj()
-    val mListAllTicketApp   : LiveData<List<TicketApp>> = mTicketDAO.getAllObj()
+    val mListAllTicketApp   : LiveData<List<TicketApp>> = mTicketDAO.getAllTicket()
 
     suspend fun insertObj(mObj: ObjApp){
         mObjDAO.insertOne(mObj)
@@ -21,7 +21,7 @@ class ZRepo (private val mObjDAO: ObjDAO, private val mTicketDAO: TicketDAO){
     }
 
     suspend fun deleteAllTicket(){
-        mTicketDAO.deleteAll()
+        mTicketDAO.deleteAllTicket()
     }
 
     fun getOneObjbyID(id: Int) : LiveData<ObjApp> {
@@ -29,7 +29,11 @@ class ZRepo (private val mObjDAO: ObjDAO, private val mTicketDAO: TicketDAO){
     }
 
     fun getOneTicketbyID(id: Int) : LiveData<TicketApp> {
-        return mTicketDAO.getOneObj(id)
+        return mTicketDAO.getOneTicket(id)
+    }
+
+    fun getLastOneTicket() : LiveData<TicketApp> {
+        return mTicketDAO.getLastOneTicket()
     }
 
     suspend fun updateObject (mObj: ObjApp){

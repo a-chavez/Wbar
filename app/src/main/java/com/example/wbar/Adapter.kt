@@ -6,10 +6,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.wbar.model.ObjApp
-import kotlinx.android.synthetic.main.fragment_home.view.*
 import kotlinx.android.synthetic.main.item_list.view.*
 
-class Adapter(var mPassObj: PassObj) : RecyclerView.Adapter<Adapter.TaskViewHolder>(){
+class Adapter(var mPassObj: FirstFragment) : RecyclerView.Adapter<Adapter.TaskViewHolder>(){
 
     private var datalist = emptyList<ObjApp>()
 

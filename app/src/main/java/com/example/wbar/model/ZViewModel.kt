@@ -45,6 +45,10 @@ class ZViewModel(application: Application) : AndroidViewModel(application) {
         return mRepository.getOneTicketbyID(id)
     }
 
+    fun getlASTOneTicket() : LiveData<TicketApp> {
+        return mRepository.getLastOneTicket()
+    }
+
     fun updateObj(mOBj: ObjApp) = viewModelScope.launch {
         mRepository.updateObject(mOBj)
     }

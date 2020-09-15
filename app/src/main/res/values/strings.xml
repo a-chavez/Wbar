@@ -27,5 +27,7 @@
     <string name="url">http:// ...</string>
 
     <string name="ticket">Total $ %1$s</string>
+    <string name="ok">ok</string>
+    <string name="cancel">cancelar</string>
 
 </resources>

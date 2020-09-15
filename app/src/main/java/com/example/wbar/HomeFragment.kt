@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -56,11 +55,15 @@ class FirstFragment : Fragment(), Adapter.PassObj {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
         if (id == R.id.menuMaster) {
-
             findNavController().navigate(R.id.action_FirstFragment_to_masterProduct)
-
             return true
         }
+
+        if (id == R.id.menuConsumo) {
+            findNavController().navigate(R.id.action_FirstFragment_to_cardItem)
+            return true
+        }
+
         return super.onOptionsItemSelected(item)
     }
 

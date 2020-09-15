@@ -4,76 +4,50 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/imgCardItem"
-        android:layout_width="50dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvCIid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="24dp"
         android:text="00"
         app:layout_constraintBottom_toBottomOf="@+id/imgCardItem"
-        app:layout_constraintStart_toEndOf="@+id/imgCardItem"
+        app:layout_constraintStart_toStartOf="@+id/imgCardItem"
         app:layout_constraintTop_toTopOf="@+id/imgCardItem" />
 
     <TextView
         android:id="@+id/tvCIproduct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:text="Detalle Producto"
         app:layout_constraintBottom_toBottomOf="@+id/imgCardItem"
-        app:layout_constraintStart_toEndOf="@+id/tvCIid"
-        app:layout_constraintTop_toTopOf="@+id/imgCardItem" />
-
-    <TextView
-        android:id="@+id/tvCIunit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="Porcion"
-        app:layout_constraintBottom_toBottomOf="@+id/imgCardItem"
-        app:layout_constraintStart_toEndOf="@+id/tvCIproduct"
-        app:layout_constraintTop_toTopOf="@+id/imgCardItem" />
-
-    <TextView
-        android:id="@+id/tvCIctd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="00"
-        app:layout_constraintBottom_toBottomOf="@+id/imgCardItem"
-        app:layout_constraintStart_toEndOf="@+id/tvCIunit"
-        app:layout_constraintTop_toTopOf="@+id/imgCardItem" />
+        app:layout_constraintEnd_toEndOf="@+id/imgCardItem"
+        app:layout_constraintStart_toStartOf="@+id/imgCardItem"
+        app:layout_constraintTop_toTopOf="@+id/imgCardItem"
+        app:layout_constraintVertical_bias="0.483" />
 
     <TextView
         android:id="@+id/tvCItotal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginEnd="24dp"
         android:text="000000"
+        android:textAlignment="textEnd"
         app:layout_constraintBottom_toBottomOf="@+id/imgCardItem"
-        app:layout_constraintStart_toEndOf="@+id/tvCIprice"
+        app:layout_constraintEnd_toEndOf="@+id/imgCardItem"
         app:layout_constraintTop_toTopOf="@+id/imgCardItem"
-        app:layout_constraintVertical_bias="0.483" />
+        app:layout_constraintVertical_bias="0.5" />
 
-    <TextView
-        android:id="@+id/tvCIprice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="00000"
-        app:layout_constraintBottom_toBottomOf="@+id/imgCardItem"
-        app:layout_constraintStart_toEndOf="@+id/tvCIctd"
-        app:layout_constraintTop_toTopOf="@+id/imgCardItem" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.example.wbar
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,13 +8,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.example.wbar.model.TicketApp
 import com.example.wbar.model.ZViewModel
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_cart.*
+import kotlinx.android.synthetic.main.fragment_master_product.*
 
 class SecondFragment : Fragment() {
 
@@ -65,6 +70,7 @@ class SecondFragment : Fragment() {
                 ticket()
 
             })
+
         }
 
         btUp.setOnClickListener {
@@ -92,21 +98,71 @@ class SecondFragment : Fragment() {
 
             cardList.setOnItemClickListener { parent, view, position, id ->
 
-                    Toast.makeText(requireContext(),"Borrar ${mlist[position]}",Toast.LENGTH_SHORT).show()
+                val builder = AlertDialog.Builder(requireContext()) //variable de la alerta
+                val trunk = mlist[position].split(":".toRegex()).map { it.trim() }
+                val txt:String = trunk[0]
+
+                builder.setTitle("Confirmar acción :") // El titulo
+                builder.setMessage("¿Borrar Item $txt del listado?") // Mensaje de alerta
+
+                // Cuando es Afirmativo
+                builder.setPositiveButton("CONFIRMAR"){dialog, which ->
+                    Toast.makeText(requireContext(),"Item eliminado",Toast.LENGTH_LONG).show()
                     val parts = mlist[position].split("=".toRegex()).map { it.trim() }
                     val minus:Int = parts[1].substring(1).toInt()
                     ticket-=minus
                     mlist.removeAt(position)
                     cardList.adapter = ArrayAdapter(requireContext(), R.layout.mylist, mlist)
                     ticket()
+                    }
+
+                // Cuando cancela
+                builder.setNeutralButton("CANCEL"){_,_ ->
+                }
+
+                val dialog: AlertDialog = builder.create() //Se crea el objeto de alerta
+                dialog.show() // se muestra el dialogo
             }
 
         }
 
+       btPay.setOnClickListener {
 
+        if (mlist.size >0) {
+            val ticketTxt = mlist.toString()  // TODO usar un "for" para ordenar en listado
+                    val mTicket = TicketApp(
+                    txt = ticketTxt,
+                    total = ticket
+                )
+            mViewModel.insertTicket(mTicket)
+            Snackbar.make(view, "Ticket Generado!", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show()
+            mlist.clear()
+            ticket=0
+            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+
+            Log.d("AQUI", "Lista con datos")
+        }else{
+            Snackbar.make(view, "Lista Vacia, nada que pagar!", Snackbar.LENGTH_LONG)
+            .setAction("Action", null).show()
+        }
+
+/*
+           mViewModel.getlASTOneTicket().observe(viewLifecycleOwner, Observer {
+               if (it != null) {
+                   Log.d("AQUI", "no nulo")
+               } else {
+                   Log.d("AQUI", "nulo")
+               }
+           })
+
+*/
+
+       }
         btHome.setOnClickListener {
             findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
         }
+
     }
 
  fun ticket()=tvTicket.setText("Total $${ticket.toString()}")

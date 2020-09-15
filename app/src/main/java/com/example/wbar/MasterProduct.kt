@@ -2,10 +2,11 @@ package com.example.wbar
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnFocusChangeListener
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -14,6 +15,7 @@ import com.example.wbar.model.ObjApp
 import com.example.wbar.model.ZViewModel
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_master_product.*
+import java.lang.Boolean
 
 class MasterProduct : Fragment() {
 
@@ -29,7 +31,7 @@ class MasterProduct : Fragment() {
 
         arguments?.let {
             bID = it.getInt("ID")
-            Log.d("Atencion",bID.toString())
+            Log.d("Atencion", bID.toString())
         }
     }
 
@@ -39,7 +41,7 @@ class MasterProduct : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        return inflater.inflate(R.layout.fragment_master_product,container,false)
+        return inflater.inflate(R.layout.fragment_master_product, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -61,6 +63,14 @@ class MasterProduct : Fragment() {
         }
 
 
+        etMasterUrl.setOnFocusChangeListener {view, b ->
+            if (etMasterUrl.toString().isNotEmpty() && b == Boolean.FALSE) {
+                Glide.with(this)
+                    .load(etMasterUrl.text.toString())
+                    .into(imgMaster)
+            }
+        }
+
         btGrabar.setOnClickListener {
 
             val pubTxt      = etMasterPub.text.toString()
@@ -72,7 +82,13 @@ class MasterProduct : Fragment() {
             if (pubTxt.isNotEmpty() && productTxt.isNotEmpty() && unitTxt.isNotEmpty() && priceTxt.isNotEmpty()) {
                 if (urlTxt.isEmpty()) urlTxt = uri
 
-               val mObjApp = ObjApp(pub = pubTxt, product = productTxt, unit = unitTxt, price = priceTxt.toInt(),img = urlTxt)
+               val mObjApp = ObjApp(
+                   pub = pubTxt,
+                   product = productTxt,
+                   unit = unitTxt,
+                   price = priceTxt.toInt(),
+                   img = urlTxt
+               )
                mViewModel.insertObj(mObjApp)
 
                 etMasterPub.setText("")
